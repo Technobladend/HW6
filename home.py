@@ -51,6 +51,18 @@ class Bank:
         print(f"Total funds in the bank: {total}")
         return total
 
+
+class SavingsAccount(BankAccount):
+
+    def __init__(self, account_number, balance, owner, interest_rate ):
+        super().__init__(account_number=account_number, balance=balance, owner=owner)
+        self.interest_rate = interest_rate
+
+
+    def add_interest(self):
+        self.balance += (self.balance * self.interest_rate / 100)
+        return self.balance
+
 # Создаем счета
 checking = CheckingAccount("CA54321", "Bob", 500, 200)
 
@@ -66,3 +78,8 @@ checking.deposit(300)
 # Выводим список счетов и общую сумму денег в банке
 bank.list_accounts()
 bank.total_funds()
+
+
+save_acc = SavingsAccount("CFG234F", 100, "Umar", 10)
+save_acc.withdraw(600)
+save_acc.deposit(300)
